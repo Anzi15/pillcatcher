@@ -11,6 +11,7 @@ import ThankYou from './components/ThankYou';
 import Login from './components/Admin/Login';
 import Dashboard from './components/Admin/Dashboard';
 import orders from './data/orders.json';
+import VideoEmbed from './components/Demo';
 
 function Home() {
   const [currentView, setCurrentView] = useState('home');
@@ -47,6 +48,7 @@ function Home() {
             <HowItWorks />
             <ProductShowcase />
             <Benefits />
+            <VideoEmbed />
             <FaqsSection />
           </>
         )}
