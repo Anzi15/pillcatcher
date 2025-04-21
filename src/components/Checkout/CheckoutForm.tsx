@@ -81,6 +81,7 @@ const CheckoutPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isSubmissionLoading, setIsSubmissionLoading] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [country, setCountry] = useState("");
 
   // Dummy Product Data
   const product = {
@@ -163,9 +164,14 @@ const CheckoutPage: React.FC = () => {
                 requiredInput
               />
               <InputField
-                inputName="Province"
+                inputName="State"
                 valueReturner={setState}
                 inputValue={state}
+              />
+              <InputField
+                inputName="Country"
+                valueReturner={setCountry}
+                inputValue={country}
               />
             </div>
 
@@ -194,7 +200,7 @@ const CheckoutPage: React.FC = () => {
               />
               <span>{product.name}</span>
               <span>Qty: {quantity}</span>
-              <span>PKR {product.price * quantity}</span>
+              <span>$ {product.price * quantity}</span>
             </div>
           </div>
         </section>
@@ -205,7 +211,7 @@ const CheckoutPage: React.FC = () => {
    <PayPalButton
      items={[{ name: product.name, unit_amount: { value: product.price.toString() }, quantity }]}
      totalAmount={(product.price * quantity).toFixed(2)}
-     onSuccess={()=>{handlePostSubmit(orderDataCache)}}
+     onSuccess={()=>{handlePostSubmit()}}
    />
  </div>
 </section>
