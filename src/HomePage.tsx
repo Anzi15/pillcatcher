@@ -12,6 +12,8 @@ import Login from './components/Admin/Login';
 import Dashboard from './components/Admin/Dashboard';
 import orders from './data/orders.json';
 import VideoEmbed from './components/Demo';
+import ChildrenEating from './components/ChildrenEating';
+import DolphinProductCard from './components/DolphinProductCard';
 
 function Home() {
   const [currentView, setCurrentView] = useState('home');
@@ -45,14 +47,16 @@ function Home() {
         {currentView === 'home' && (
           <>
             <Hero />
-            <HowItWorks />
-            <ProductShowcase />
-            <Benefits />
+              <div className='w-full flex justify-center items-center'>
+                <img src="/pillcatcher.jpg" alt="" className='w-full' />
+              </div>
             <VideoEmbed />
-            <FaqsSection />
+              <ProductShowcase />
+              <DolphinProductCard />
+            <ChildrenEating />
           </>
         )}
-        {currentView === 'buy' && (
+        {/* {currentView === 'buy' && (
           <BuyNow onCheckout={() => setCurrentView('checkout')} />
         )}
         {currentView === 'checkout' && (
@@ -60,8 +64,8 @@ function Home() {
             total={cart.total * cart.quantity} 
             onSuccess={handleOrderSuccess}
           />
-        )}
-        {currentView === 'thank-you' && <ThankYou />}
+        )} */}
+        {/* {currentView === 'thank-you' && <ThankYou />} */}
       </main>
 
       <Footer />

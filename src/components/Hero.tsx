@@ -13,12 +13,13 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="flex-1 max-w-xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Never Lose Another Pill
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              
+Just Close, Flip, Open and Pick
+- it's that easy!
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              PillCatcher is your simple solution to prevent pills from falling and getting lost.
-              Perfect for seniors, caregivers, and anyone who values medication safety.
+            This clever little device can make any pill bottle seem full, and makes taking medication easy, hygienic and safe.
             </p>
             <div className="flex gap-4">
               <motion.a
@@ -46,7 +47,7 @@ const Hero = () => {
             className="flex-1"
           >
             <img
-              src="https://i.ibb.co/spPp5vCv/szdrhf.png"
+              src="/IMG-20250310-WA0156.jpg"
               alt="PillCatcher Device"
               className="rounded-2xl shadow-2xl"
             />

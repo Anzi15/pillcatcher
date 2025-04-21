@@ -9,7 +9,7 @@ export default function BuyNow() {
     <>
       <main className="flex justify-evenly w-full md:flex-row flex-col relative h-full pt-20">
         <div className="md:max-h-[565px] md:max-w-[445px]">
-          <img className="w-full rounded-md" src="https://i.ibb.co/Fqs8Cv0X/sdfgsdf.png" alt="" />
+          <img className="aspect-square object-cover w-full rounded-md" src="IMG-20250310-WA0176.jpg" alt="" />
         </div>
         <ProductPageUi />
       </main>

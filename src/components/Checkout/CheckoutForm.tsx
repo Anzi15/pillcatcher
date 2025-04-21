@@ -19,46 +19,43 @@ const CheckoutPage: React.FC = () => {
   const handlePostSubmit = async () => {
     setIsSubmissionLoading(true);
   
-    const orderDetails = `
-      Name: ${firstName} ${lastName}
-      Email: ${email}
-      Phone: ${phoneNumber}
-      Address: ${address}, ${extraAddress}, ${city}, ${state}
   
-      Product: ${product.name}
-      Quantity: ${quantity}
-      Price: $${product.price}
-      Total: $${(product.price * quantity).toFixed(2)}
-    `;
+    const orderDetailsHtml = `
+    <h2>New Order Received!</h2>
+    <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Phone:</strong> ${phoneNumber}</p>
+    <p><strong>Address:</strong> ${address}, ${extraAddress}, ${city}, ${state}</p>
+    <hr>
+    <h3>Product Details</h3>
+    <p><strong>Product:</strong> ${product.name}</p>
+    <p><strong>Quantity:</strong> ${quantity}</p>
+    <p><strong>Price:</strong> $${product.price}</p>
+    <p><strong>Total:</strong> $${(product.price * quantity).toFixed(2)}</p>
+    <hr>
+    <p>This is an automated order confirmation email. Please process the order accordingly.</p>
+  `;
   
-    // Prepare email data
-    const formData = new FormData();
-    formData.append("from", "Your Store <no-reply@mindthatseekstruth.com>");
-    // formData.append("to", "md007@gmail.com");
-    formData.append("to", "djam4343@gmail.com");
-    formData.append("subject", "New Order Received");
-    formData.append("text", orderDetails);
+  const recipients = 'djam4343@gmail.com, Md007m@gmail.com';
   
-    try {
-      const response = await fetch(
-        `https://api.mailgun.net/v3/mindthatseekstruth.com/messages`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Basic ${btoa(`api:${import.meta.env.VITE_MAILGUN_API_KEY}`)}`,
-          },
-          body: formData,
-        }
-      );
-  
-      if (response.ok) {
-        console.log("Email sent successfully!");
-      } else {
-        console.error("Failed to send email:", await response.text());
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
+  fetch('http://mindthatseekstruth.com/api/send-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      recipient: recipients,
+      subject: 'New Order Received!',
+      content: orderDetailsHtml,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Email sent:', data);
+    })
+    .catch((error) => {
+      console.error('Error sending email:', error);
+    });
   
     setIsSubmissionLoading(false);
   };
@@ -90,13 +87,13 @@ const CheckoutPage: React.FC = () => {
     id: "12345",
     name: "PillCatcher (pack of 10)",
     price: 9.99,
-    image: "https://i.ibb.co/Fqs8Cv0X/sdfgsdf.png",
+    image: "/IMG-20250310-WA0176.jpg",
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmissionLoading(true);
-    setShowOverlay(true);
+    // setIsSubmissionLoading(true);
+    // setShowOverlay(true);
     toast.success("Your order has been placed!");
     handlePostSubmit();
 
